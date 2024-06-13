@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "8000:80"
+  server_1:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    environment:
+      - PORT=4000
+      - APP_NAME=MY_APP_1
+      - WHITELISTED_ORIGINS=http://localhost:5500
+  server_2:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    environment:
+      - PORT=4001
+      - APP_NAME=MY_APP_2
+      - WHITELISTED_ORIGINS=http://localhost:5500
