@@ -1,8 +1,6 @@
-FROM node:20-alpine-lts AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
-
-RUN npm install -g yarn
 
 COPY server/package.json package.json
 
@@ -10,9 +8,11 @@ COPY server/yarn.lock yarn.lock
 
 RUN yarn install --frozen-lockfile
 
+COPY server .
+
 RUN yarn build
 
-FROM node:20-alpine-lts AS RUNNER
+FROM node:20-alpine AS RUNNER
 
 WORKDIR /app
 
