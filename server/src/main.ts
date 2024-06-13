@@ -21,8 +21,15 @@ const io = new Server(server, {
   },
 });
 
+app.get("/ping", (req, res) => res.status(200).send("Hello from server"));
+
 io.on("connection", (socket) => {
   console.log(`a user connected to ${appName}`);
+
+  socket.emit("CLIENT_CONNECTED", {
+    message: `HELLO you are connected to ${appName}`,
+    id: socket.id,
+  });
 
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);

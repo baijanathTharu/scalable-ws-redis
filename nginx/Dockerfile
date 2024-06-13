@@ -1,3 +1,3 @@
 FROM nginx:latest
 
-COPY redis/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf

@@ -11,6 +11,8 @@ services:
     build:
       context: .
       dockerfile: ./server/Dockerfile
+    ports:
+      - "4000:4000"
     environment:
       - PORT=4000
       - APP_NAME=MY_APP_1
@@ -19,6 +21,8 @@ services:
     build:
       context: .
       dockerfile: ./server/Dockerfile
+    ports:
+      - "4001:4001"
     environment:
       - PORT=4001
       - APP_NAME=MY_APP_2
