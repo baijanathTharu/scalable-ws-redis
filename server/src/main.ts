@@ -1,16 +1,11 @@
-import { config } from "dotenv";
-
-config({
-  path: ".env",
-});
-
 import express from "express";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
+import { env } from "./config";
 
-const appName = process.env.APP_NAME || "";
-const whiteListed = (process.env.WHITELISTED_ORIGINS || "").split(",");
-const PORT = Number(process.env.PORT || 4000);
+const appName = env.APP_NAME;
+const whiteListed = env.WHITELISTED_ORIGINS;
+const PORT = env.PORT;
 
 const app = express();
 const server = createServer(app);
